@@ -1,0 +1,85 @@
+* {
+    box-sizing: border-box;
+  }
+  body {
+    font-family: Arial;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    justify-content: flex-start;
+    background-color: #bdbdbd;
+  }
+  .header {
+    display: flex;
+    justify-content: center;
+    background-color: rgb(65, 65, 133);
+    color: #fff;
+  }
+  .card {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+  }
+  .btn {
+    display: flex;
+    background-color: rgb(65, 65, 133);
+    margin: 2px;
+    padding: 5px;
+    font-size: 1em;
+    letter-spacing: 0.2px;
+    border: 3px solid black;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+
+  #weatherResults {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin: 10px;
+    width: 99%;
+  }
+  .weatherIcon {
+    height: 20px;
+    width: 20px;
+  }
+  .divider {
+    border:3px solid black;
+  }
+  .weather-forecast {
+    background-color: #f0f0f0;
+    padding: 10px;
+  }
+  
+  .five-day-forecast {
+    background-color: #e0e0e0;
+    padding: 10px;
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  .weatherBox {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #aside {
+    background-color: rgb(148, 148, 219);
+    border: 3px dotted black;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 10px;
+    word-spacing: 10px;
+    width: 35%;
+  }
+
+  .aside-top {
+    padding: 10px;
+  }
+  .aside-bottom {
+    padding: 10px;
+  }

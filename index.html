@@ -1,4 +1,40 @@
 <!DOCTYPE html>
-<html>
-    
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./assets/style.css" />
+    <title>Weather Forecast</title>
+</head>
+
+<body>
+    <header class="header">
+        <h1>Weather Forecast</h1>
+    </header>
+    <main class="card">
+        <div id="aside">
+            <div class="aside-top">
+                <div class="search-bar">
+                    <label id="form-label" for="city-search">Enter Your City;</label>
+                    <input id="city-search" type="text" autofocus="true" class="form-input" />
+                    <button type="submit" class="btn submitBtn">Find City</button>
+                </div>
+            </div>
+            <div class="divider"></div>
+            <div class="aside-bottom" id="history">History</div>
+        </div>
+        <div id="weatherResults" class="weather-forecast">
+            <div id="currentDay" class="weatherBox">
+                <h2 class="city-name"></h2>
+                <p class="desc temp"></p>
+                <p class="humidity"></p>
+                <p class="wind-speed"></p>
+            </div>
+            <div class="five-day-forecast"></div>
+    </main>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <script src="./assets/script.js"></script>
+</body>
+
 </html>
