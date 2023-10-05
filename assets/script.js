@@ -7,45 +7,32 @@ var cityName = document.querySelector('.city-name');
 var humidity = document.querySelector('.humidity');
 var btn = document.querySelector('.submitBtn');
 var fiveDayForecast = document.querySelector('.five-day-forecast');
+var weather = document.querySelector('.weather')
+var todayIcon = document.getElementById('weather-icon')
 
-// Mapping between weather conditions and icons
-var weatherIcons = {
-    Clear: './assets/clear-sky.png',
-    Clouds: './assets/cloud.png',
-    Rain: './assets/rain.png',
-    Snow: './assets/snow.png'
-};
 $(document).ready(function () {
     function weatherDisplay(data) {
         console.log(data);
         cityName.textContent = data.city.name;
-        temp.textContent = `Temperature: ${data.list[0].main.temp} degrees.`;
+        temp.textContent = `Temperature: ${Math.round(data.list[0].main.temp)} degrees.`;
         humidity.textContent = `Humidity: ${data.list[0].main.humidity} %`;
-        windSpeed.textContent = `Wind Speed: ${data.list[0].wind.speed} mph.`;
+        windSpeed.textContent = `Wind Speed: ${Math.round(data.list[0].wind.speed)} mph.`;
+        todayIcon.setAttribute('src', `https://openweathermap.org/img/w/${data.list[0].weather[0].icon}.png`)
     }
     function fiveDayDisplay(data) {
         for (let index = 0; index < data.list.length; index = index + 8) {
             console.log(data.list[index]);
             var html = `<div id="nextDay" class="five-day-forecast weatherBox">
             <h2 class="temp">${data.list[index].dt_txt.split(" ")[0]}</h2>
-                <p class="desc">Temp: ${data.list[index].main.temp} Degrees.</p>
+                <p class="desc">Temp: ${Math.round(data.list[index].main.temp)} Degrees.</p>
                 <p class="humidity">Humidity: ${data.list[index].main.humidity} %</p>
-                <p class="wind-speed">Wind Speed: ${data.list[index].wind.speed} MPH.</p>
+                <p class="wind-speed">Wind Speed: ${Math.round(data.list[index].wind.speed)} MPH.</p>
+                <p class="weather-icon">Weather: <img src="https://openweathermap.org/img/w/${data.list[index].weather[0].icon}.png"
         </div>`
             fiveDayForecast.insertAdjacentHTML("beforeend", html);
-            // Access the weather condition
-            var weatherCondition = data.list[0].weather[0].main;
-            // Retrieve the corresponding icon based on the weather condition
-            var iconSrc = weatherIcons[weatherCondition];
-            // Create and set the icon image element
-            var iconImg = $('<img>').attr('src', iconSrc).attr('class', 'weatherIcon');
-            console.log({ iconImg });
-            // Append the icon image to the container
-            $('.weatherBox').append(iconImg);
         }
     }
     function getWeather(city) {
-        // var city = $('#city-search').val();
         fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=2c5de945f63568dd4dbf3de2fad3fcd4&units=imperial`)
             .then(response => {
                 return response.json()
@@ -80,6 +67,12 @@ $(document).ready(function () {
         localStorage.setItem('searchHistory', searchHistoryString);
     }
 
+    // function to clear out the  fiveDayForcast div
+    // that runs before we getWeather()
+    function clearHTML() {
+        $('.five-day-forecast').empty()
+    }
+
     // Function to display search history on the page
     function displaySearchHistory() {
         // Get the search history from local storage
@@ -93,6 +86,8 @@ $(document).ready(function () {
 
                 // Display the search history on the page (e.g., append to a list)
                 var historyItem = $('<li>' + query + '</li>').on('click', function () {
+                    // clear out any old html
+                    clearHTML()
                     getWeather(query);
                 });
                 $("#history").append(historyItem);
@@ -102,6 +97,7 @@ $(document).ready(function () {
     $(".submitBtn").on('click', function () {
         citySubmitHistory();
         var city = $('#city-search').val();
+        clearHTML()
         getWeather(city);
     });
     displaySearchHistory();
