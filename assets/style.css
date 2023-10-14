@@ -18,8 +18,7 @@
   }
   .card {
     display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
+    flex-direction: row;
   }
   .btn {
     display: flex;
@@ -35,10 +34,9 @@
 
   #weatherResults {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     flex-wrap: wrap;
     margin: 10px;
-    width: 99%;
   }
   .weatherIcon {
     height: 20px;
@@ -64,16 +62,29 @@
   .five-day-forecast {
     background-color: #e0e0e0;
     padding: 10px;
-    margin-top: 10px;
     display: flex;
-    flex-wrap: wrap;
     flex-direction: row;
-    justify-content: space-around;
+  }
+
+  #currentDay {
+    display: flex;
+    flex-direction: row;
+    word-spacing: 2px;
+    gap: 10px;
+    border: none;
+    margin: -2px;
   }
 
   .weatherBox {
     display: flex;
     flex-direction: column;
+    border: 2px dashed black;
+    border-radius: 2%;
+    margin: 2px;
+  }
+
+  .weather-icon {
+    display: flex;
   }
 
   #aside {
@@ -83,7 +94,7 @@
     margin: 10px;
     padding: 10px;
     word-spacing: 10px;
-    width: 35%;
+    height: fit-content;
   }
 
   .aside-top {
